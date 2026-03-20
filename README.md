@@ -9,7 +9,7 @@ Bem-vindo à API do Old Dragon Online! Integre sua aplicação com olddragon.com
 
 ## Início Rápido
 
-Confira uma demonstração de aplicação em [https://olddragon-api-nodejs-demo.fly.dev](https://olddragon-api-nodejs-demo.fly.dev) e seu código fonte em  [github.com/burobrasil/olddragon-api-nodejs-demo](https://github.com/burobrasil/olddragon-api-nodejs-demo) (você pode fazer um _fork_ e lançar uma cópia no [Fly.io](https://fly.io)).
+Confira uma demonstração de aplicação em [https://olddragon-api-nodejs-demo.fly.dev](https://olddragon-api-nodejs-demo.fly.dev) e seu código fonte em  [github.com/olddragoneditora/olddragon-api-nodejs-demo](https://github.com/olddragoneditora/olddragon-api-nodejs-demo) (você pode fazer um _fork_ e lançar uma cópia no [Fly.io](https://fly.io)).
 
 ### cURL
 ```bash

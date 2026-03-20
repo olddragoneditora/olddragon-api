@@ -201,4 +201,4 @@ http https://olddragon.com.br/magias/luz.json
 
 Os atributos `reverse` e `reverse_spell` denotam que esta magia possui uma versão reversa. Por exemplo, a magia [Luz](https://olddragon.com.br/magias/luz) retorna `reverse: true` e com `reverse_spell` apontando para a sua magia reversa [Escuridão](https://olddragon.com.br/magias/escuridao).
 
-O atributo `access` é explicado em [Acesso](https://github.com/burobrasil/olddragon-api/blob/master/capitulos/acesso.md#acesso).
+O atributo `access` é explicado em [Acesso](https://github.com/olddragoneditora/olddragon-api/blob/master/capitulos/acesso.md#acesso).
