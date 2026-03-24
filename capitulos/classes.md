@@ -903,8 +903,8 @@ Listar minhas classes
     "armors_description": "",
     "weapons_description": "",
     "magic_items_description": "",
-    "hp": 6,
-    "high_level_hp_bonus": 1,
+    "hp": 10,
+    "high_level_hp_bonus": 2,
     "restrictions": {},
     "ba_progression": [
       1,
@@ -1088,8 +1088,8 @@ _Parâmetros opcionais de URL_:
     "armors_description": "",
     "weapons_description": "",
     "magic_items_description": "",
-    "hp": 8,
-    "high_level_hp_bonus": 2,
+    "hp": 4,
+    "high_level_hp_bonus": 1,
     "restrictions": {},
     "ba_progression": [
       0,

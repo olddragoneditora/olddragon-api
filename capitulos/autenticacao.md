@@ -5,7 +5,7 @@ A API usa OAuth 2.0 com OpenID Connect para autenticação segura. PKCE é obrig
 
 ## Registro de Aplicação
 
-Para registrar sua aplicação, envie email para odonline@olddragon.com.br com:
+Para registrar sua aplicação, envie email para oi@olddragon.com.br com:
 
 1. Nome da aplicação
 2. Descrição da funcionalidade
