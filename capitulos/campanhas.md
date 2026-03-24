@@ -207,7 +207,7 @@ Listar personagens em uma campanha
     "movement_fly": 0,
     "infravision": 0,
     "experience_points": 11520,
-    "money_gp": 0,
+    "money_gp": 10,
     "money_sp": 0,
     "money_cp": 0,
     "alignment": "neutro",

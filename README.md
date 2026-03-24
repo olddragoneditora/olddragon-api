@@ -37,7 +37,7 @@ http https://olddragon.com.br/personagens.json \
 
 ## Suporte
 
-Para dúvidas ou problemas, envie um email para odonline@olddragon.com.br.
+Para dúvidas ou problemas, envie um email para oi@olddragon.com.br.
 
 ## Requisitos Básicos
 
@@ -135,9 +135,10 @@ A API suporta CORS para permitir chamadas de navegadores web:
 - [Perfis](capitulos/perfis.md) - `/perfis/:handler.json`
 - [Raças](capitulos/racas.md) - `/racas.json`
 
-**Nota**: Campanhas e personagens específicos (`/campanhas/ID.json` e `/personagens/ID.json`) podem ser acessados sem autenticação.
+**Nota**: Campanhas, personagens e ajudantes específicos (`/campanhas/ID.json`, `/personagens/ID.json` e `/ajudantes/ID.json`) podem ser acessados sem autenticação.
 
 ### Conteúdo Privado (autenticação obrigatória)
+- [Ajudantes](capitulos/ajudantes.md) - `/ajudantes.json` (listar seus ajudantes)
 - [Campanhas](capitulos/campanhas.md) - `/campanhas.json` (listar suas campanhas)
 - [Personagens](capitulos/personagens.md) - `/personagens.json` (listar seus personagens)
 - [Acesso](capitulos/acesso.md) - Controle de acesso a conteúdo exclusivo
@@ -203,7 +204,7 @@ http PUT https://olddragon.com.br/personagens/ID_PERSONAGEM/pv.json \
 
 ## Suporte
 
-**Email**: odonline@olddragon.com.br
+**Email**: oi@olddragon.com.br
 
 ## Licença
 

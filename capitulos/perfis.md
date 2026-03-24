@@ -35,7 +35,7 @@ Obter meu perfil
     "url": "https://olddragon.com.br/campanhas.json"
   },
   "characters": {
-    "count": 5,
+    "count": 6,
     "url": "https://olddragon.com.br/personagens.json"
   },
   "digital_items": {
