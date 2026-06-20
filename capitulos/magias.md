@@ -13,7 +13,7 @@ Listar magias
 
 _Parâmetros opcionais de URL_:
 
-- `circles[]` - filtragem com lista (_array_) dos círculos da magia. Caso a magia possua mais de um círculo (como "Ampliar Plantas", que é Arcana de 4o cículo e Divina de 3o círculo), será considerado o círculo menor das magias filtradas no parâmetro `schools[]` (ou de todas caso não esteja presente). Opções são `1o`, `2o`, `3o`, `4o`, `5o`, `6o`, `7o`, `8o`, `9o`. Vários podem ser informados para retornar de mais de um círculo de magia ao mesmo tempo.
+- `circles[]` - filtragem com lista (_array_) dos círculos da magia. Uma magia é retornada se possuir o círculo informado em qualquer uma de suas escolas (combinado com `schools[]`, exige a escola e o círculo na mesma combinação). Magias podem estar disponíveis em mais de um círculo dentro da mesma escola (veja o atributo `circles`). Opções são `1o`, `2o`, `3o`, `4o`, `5o`, `6o`, `7o`, `8o`, `9o`. Vários podem ser informados para retornar de mais de um círculo de magia ao mesmo tempo.
 - `ids[]` - Lista de IDs de magias. Exemplo: `ids[]=ajuda&ids[]=luz`.
 - `name` - filtragem parcial pelo nome. Por exemplo, se for passado `abe`, serão retornadas as magias "Abençoar" e "Arma Abençoada".
 - `order` - ordena a lista. Opções são `name` (padrão), `reverse_name`, `circle`, `reverse_circle`.
@@ -33,6 +33,11 @@ _Parâmetros opcionais de URL_:
     "necromancer": null,
     "illusionist": null,
     "updated_at": "2023-01-01T00:00:00.000",
+    "circles": {
+      "divine": [
+        2
+      ]
+    },
     "reverse": false,
     "access": "complete",
     "range": "toque",
@@ -57,6 +62,11 @@ _Parâmetros opcionais de URL_:
     "necromancer": null,
     "illusionist": null,
     "updated_at": "2023-01-01T00:00:00.000",
+    "circles": {
+      "arcane": [
+        1
+      ]
+    },
     "reverse": true,
     "access": "complete",
     "range": "especial",
@@ -86,6 +96,11 @@ _Parâmetros opcionais de URL_:
     "necromancer": null,
     "illusionist": 1,
     "updated_at": "2023-01-01T00:00:00.000",
+    "circles": {
+      "illusionist": [
+        1
+      ]
+    },
     "reverse": false,
     "access": "complete",
     "range": "especial",
@@ -110,6 +125,14 @@ _Parâmetros opcionais de URL_:
     "necromancer": null,
     "illusionist": null,
     "updated_at": "2023-01-01T00:00:00.000",
+    "circles": {
+      "arcane": [
+        1
+      ],
+      "divine": [
+        1
+      ]
+    },
     "reverse": true,
     "access": "complete",
     "range": "especial",
@@ -162,6 +185,14 @@ Obter magia específica
   "necromancer": null,
   "illusionist": null,
   "updated_at": "2023-01-01T00:00:00.000",
+  "circles": {
+    "arcane": [
+      1
+    ],
+    "divine": [
+      1
+    ]
+  },
   "reverse": true,
   "access": "complete",
   "range": "especial",
@@ -198,6 +229,10 @@ http https://olddragon.com.br/magias/luz.json
 ```
 
 ### Observações sobre atributos
+
+O atributo `circles` lista, para cada escola, **todos** os círculos em que a magia pode ser memorizada (por exemplo, `{"divine": [3, 6]}` para uma magia que também pode ser memorizada em um círculo superior). Esta é a forma recomendada de obter as escolas e os círculos da magia.
+
+> **Depreciado:** os atributos `arcane`, `divine`, `necromancer` e `illusionist` são mantidos apenas para compatibilidade e expõem somente o **menor** círculo de cada escola (`null` quando a magia não pertence àquela escola). Prefira o atributo `circles`, que representa todos os círculos. Estes atributos poderão ser removidos em uma versão futura.
 
 Os atributos `reverse` e `reverse_spell` denotam que esta magia possui uma versão reversa. Por exemplo, a magia [Luz](https://olddragon.com.br/magias/luz) retorna `reverse: true` e com `reverse_spell` apontando para a sua magia reversa [Escuridão](https://olddragon.com.br/magias/escuridao).
 
