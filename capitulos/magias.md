@@ -5,6 +5,8 @@ Endpoints:
 
 - [Listar magias](#listar-magias)
 - [Obter magia específico](#obter-magia-específico)
+- [Listar minhas magias](#listar-minhas-magias)
+- [Listar magias comunitárias](#listar-magias-comunitarias)
 
 Listar magias
 -------------
@@ -226,6 +228,117 @@ curl -s https://olddragon.com.br/magias/luz.json
 
 ``` shell
 http https://olddragon.com.br/magias/luz.json
+```
+
+Listar minhas magias
+---------------------
+
+* `GET /magias/minhas.json` retorna todas as magias personalizadas do usuário autenticado.
+
+**Requer autenticação.**
+
+###### Exemplo de resposta JSON
+<!-- START spells_my.json -->
+```json
+[
+  {
+    "id": "770e8400-e29b-41d4-a716-446655440000",
+    "type": "Spell",
+    "name": "Magia Personalizada Um",
+    "arcane": 1,
+    "divine": null,
+    "necromancer": null,
+    "illusionist": null,
+    "updated_at": "2023-01-01T00:00:00.000",
+    "circles": {
+      "arcane": [
+        1
+      ]
+    },
+    "reverse": false,
+    "access": "complete",
+    "range": "",
+    "duration": "",
+    "jp": "",
+    "description": "Esta é uma magia customizada criada por um jogador para testes.",
+    "fontes": [],
+    "author": {
+      "handler": "jogador",
+      "url": "https://olddragon.com.br/perfis/jogador.json"
+    },
+    "url": "https://olddragon.com.br/magias/770e8400-e29b-41d4-a716-446655440000.json"
+  }
+]
+```
+<!-- END spells_my.json -->
+
+###### Copiar como cURL
+
+``` shell
+curl -s https://olddragon.com.br/magias/minhas.json -H "Authorization: Bearer <token>"
+```
+
+###### Copiar como HTTPie
+
+``` shell
+http https://olddragon.com.br/magias/minhas.json Authorization:"Bearer <token>"
+```
+
+Listar magias comunitárias
+----------------------------
+
+* `GET /magias/comunitarias.json` retorna todas as magias personalizadas compartilhadas pela comunidade (homebrew).
+
+_Parâmetros opcionais de URL_:
+
+* `name` - Filtro por nome. Exemplo: `name=Bola de Fogo`.
+* `order` - Ordenação (`name` ou `likes`). Padrão: `likes`.
+
+###### Exemplo de resposta JSON
+<!-- START spells_homebrew.json -->
+```json
+[
+  {
+    "id": "770e8400-e29b-41d4-a716-446655440001",
+    "type": "Spell",
+    "name": "Magia Personalizada Dois",
+    "arcane": 1,
+    "divine": null,
+    "necromancer": null,
+    "illusionist": null,
+    "updated_at": "2023-01-01T00:00:00.000",
+    "circles": {
+      "arcane": [
+        1
+      ]
+    },
+    "reverse": false,
+    "access": "complete",
+    "range": "",
+    "duration": "",
+    "jp": "",
+    "description": "Esta é outra magia customizada criada por um jogador para testes.",
+    "fontes": [],
+    "author": {
+      "handler": "outro_jogador",
+      "url": "https://olddragon.com.br/perfis/outro_jogador.json"
+    },
+    "url": "https://olddragon.com.br/magias/770e8400-e29b-41d4-a716-446655440001.json"
+  }
+]
+```
+<!-- END spells_homebrew.json -->
+
+###### Copiar como cURL
+
+``` shell
+curl -s https://olddragon.com.br/magias/comunitarias.json
+```
+
+###### Copiar como HTTPie
+
+``` shell
+http https://olddragon.com.br/magias/comunitarias.json
 ```
 
 ### Observações sobre atributos
