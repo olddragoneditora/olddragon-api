@@ -5,6 +5,8 @@ Endpoints:
 
 - [Listar monstros](#listar-monstros)
 - [Obter monstro específico](#obter-monstro-específico)
+- [Listar meus monstros](#listar-meus-monstros)
+- [Listar monstros comunitários](#listar-monstros-comunitarios)
 
 Listar monstros
 --------------
@@ -72,12 +74,12 @@ _Parâmetros opcionais de URL_:
     "dv": "1",
     "attacks": [
       {
-        "text": "1 × arma +3 (arma +0)",
+        "text": "1 × arma +3 (Arma)",
         "times": 1,
         "description": "arma",
         "ba": 3,
-        "damage_description": "arma +0",
-        "damage": "nil",
+        "damage_description": "Arma",
+        "damage": "",
         "damage_bonus": null,
         "weapon": true
       }
@@ -157,12 +159,12 @@ Obter monstro específico
   "dv": "1",
   "attacks": [
     {
-      "text": "1 × arma +3 (arma +0)",
+      "text": "1 × arma +3 (Arma)",
       "times": 1,
       "description": "arma",
       "ba": 3,
-      "damage_description": "arma +0",
-      "damage": "nil",
+      "damage_description": "Arma",
+      "damage": "",
       "damage_bonus": null,
       "weapon": true
     }
@@ -199,4 +201,139 @@ curl -s https://olddragon.com.br/monstros/orc.json
 
 ``` shell
 http https://olddragon.com.br/monstros/orc.json
+```
+
+Listar meus monstros
+-------------------------
+
+* `GET /monstros/minhas.json` retorna todos os monstros personalizados do usuário autenticado.
+
+**Requer autenticação.**
+
+###### Exemplo de resposta JSON
+<!-- START monsters_my.json -->
+```json
+[
+  {
+    "id": "880e8400-e29b-41d4-a716-446655440020",
+    "type": "Monster",
+    "name": "Monstro Personalizado Um",
+    "flavor": "",
+    "concept": "humanoide",
+    "size": "miudo",
+    "habitats": [],
+    "alignment": "ordeiro",
+    "variant": false,
+    "access": "complete",
+    "description": "\n\n\n\n",
+    "picture": null,
+    "thumb_picture": null,
+    "encounters": null,
+    "encounters_lair": null,
+    "xp": "",
+    "treasure": null,
+    "treasure_lair": null,
+    "mv": null,
+    "mvc": null,
+    "mve": null,
+    "mvn": null,
+    "mvv": null,
+    "mvo": null,
+    "dv_bonus": "",
+    "pv": "",
+    "ca": "",
+    "jp": "",
+    "mo": null,
+    "dv": "1",
+    "attacks": [],
+    "fontes": [],
+    "author": {
+      "handler": "jogador",
+      "url": "https://olddragon.com.br/perfis/jogador.json"
+    },
+    "url": "https://olddragon.com.br/monstros/880e8400-e29b-41d4-a716-446655440020.json"
+  }
+]
+```
+<!-- END monsters_my.json -->
+
+###### Copiar como cURL
+
+``` shell
+curl -s https://olddragon.com.br/monstros/minhas.json -H "Authorization: Bearer <token>"
+```
+
+###### Copiar como HTTPie
+
+``` shell
+http https://olddragon.com.br/monstros/minhas.json Authorization:"Bearer <token>"
+```
+
+Listar monstros comunitários
+----------------------------------
+
+* `GET /monstros/comunitarias.json` retorna todos os monstros personalizados compartilhados pela comunidade (homebrew).
+
+_Parâmetros opcionais de URL_:
+
+* `name` - Filtro por nome. Exemplo: `name=Monstro Personalizado Dois`.
+* `order` - Ordenação (`name` ou `likes`). Padrão: `likes`.
+
+###### Exemplo de resposta JSON
+<!-- START monsters_homebrew.json -->
+```json
+[
+  {
+    "id": "880e8400-e29b-41d4-a716-446655440021",
+    "type": "Monster",
+    "name": "Monstro Personalizado Dois",
+    "flavor": "",
+    "concept": "humanoide",
+    "size": "miudo",
+    "habitats": [],
+    "alignment": "ordeiro",
+    "variant": false,
+    "access": "complete",
+    "description": "\n\n\n\n",
+    "picture": null,
+    "thumb_picture": null,
+    "encounters": null,
+    "encounters_lair": null,
+    "xp": "",
+    "treasure": null,
+    "treasure_lair": null,
+    "mv": null,
+    "mvc": null,
+    "mve": null,
+    "mvn": null,
+    "mvv": null,
+    "mvo": null,
+    "dv_bonus": "",
+    "pv": "",
+    "ca": "",
+    "jp": "",
+    "mo": null,
+    "dv": "1",
+    "attacks": [],
+    "fontes": [],
+    "author": {
+      "handler": "outro_jogador",
+      "url": "https://olddragon.com.br/perfis/outro_jogador.json"
+    },
+    "url": "https://olddragon.com.br/monstros/880e8400-e29b-41d4-a716-446655440021.json"
+  }
+]
+```
+<!-- END monsters_homebrew.json -->
+
+###### Copiar como cURL
+
+``` shell
+curl -s https://olddragon.com.br/monstros/comunitarias.json
+```
+
+###### Copiar como HTTPie
+
+``` shell
+http https://olddragon.com.br/monstros/comunitarias.json
 ```
