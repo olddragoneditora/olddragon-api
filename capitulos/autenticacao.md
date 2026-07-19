@@ -1,22 +1,25 @@
 Autenticação
 ============
 
-A API usa OAuth 2.0 com OpenID Connect para autenticação segura. PKCE é obrigatório para todas as aplicações.
+A API usa OAuth 2.0 com OpenID Connect para autenticação segura. PKCE é obrigatório para o fluxo de authorization code.
 
 ## Registro de Aplicação
 
-Para registrar sua aplicação, envie email para oi@olddragon.com.br com:
+Cadastre sua aplicação em [olddragon.com.br/conta/aplicativos](https://olddragon.com.br/conta/aplicativos) (Aplicativos para Desenvolvedores) — o cadastro é self-service, não é preciso pedir aprovação por email. Informe:
 
 1. Nome da aplicação
-2. Descrição da funcionalidade
-3. URL de callback (ex: `https://seu-app.com/callback`)
-4. Tipo de aplicação (web, mobile, desktop)
+2. Descrição da funcionalidade (opcional)
+3. URL da página inicial (`homepage_url`) — precisa começar com `http://` ou `https://`
+4. URL de callback (`redirect_uri`, ex: `https://seu-app.com/callback`) — precisa começar com `http://` ou `https://`
+5. Escopos desejados (veja "Scopes Disponíveis" abaixo)
 
-Você receberá:
+Você recebe imediatamente:
 - `client_id`: Identificador público da aplicação
-- `client_secret`: Chave secreta (apenas para aplicações server-side)
+- `client_secret`: Chave secreta — **exibida uma única vez**, no momento em que é criada ou regenerada. Guarde-a em local seguro; se perdê-la, é preciso regenerar (o que invalida a anterior na hora).
 
-Não se preocupe, você pode mudar depois qualquer informação (até o nome) da sua aplicação.
+Limite de 5 aplicativos por conta. Você pode mudar depois qualquer informação (até o nome) da sua aplicação, ou excluí-la, em "Aplicativos para Desenvolvedores".
+
+Aplicações que não conseguem guardar um `client_secret` com segurança (desktop, CLI, um módulo de jogo) não devem usar o fluxo padrão abaixo — use o Device Flow (seção "Aplicativos de Desktop e Auto-Hospedados" mais adiante neste documento), que dispensa client secret. Não há alternância pública/confidencial no formulário de cadastro.
 
 ## Por que Autenticar?
 
@@ -52,7 +55,8 @@ https://olddragon.com.br/authorize?
 ### Scopes Disponíveis
 - `openid`: Informações básicas do usuário
 - `email`: Email do usuário
-- `content.read`: Acesso ao conteúdo (personagens, campanhas, etc.)
+- `content.read`: Ler seus personagens, campanhas e conteúdo dos seus livros — exigido em toda requisição `GET`/`HEAD`
+- `content.write`: Criar e alterar seus personagens, campanhas, ajudantes e conteúdo caseiro — exigido em qualquer requisição que não seja `GET`/`HEAD` (`POST`, `PUT`, `PATCH`, `DELETE`)
 - `offline_access`: Refresh token para acesso prolongado
 
 ### Validade dos Tokens
@@ -79,6 +83,82 @@ http --form POST https://olddragon.com.br/token \
   refresh_token=SEU_REFRESH_TOKEN \
   client_id=SEU_CLIENT_ID
 ```
+
+## Aplicativos de Desktop e Auto-Hospedados (Device Flow)
+
+Aplicativos sem navegador embutido ou sem como guardar um `client_secret` com
+segurança — um módulo de jogo, um script auto-hospedado — usam o Device
+Authorization Grant (RFC 8628) em vez do fluxo padrão de authorization code acima.
+Não é necessário `client_secret` em nenhuma etapa.
+
+### 1. Solicitar um código de dispositivo
+
+#### cURL
+```bash
+curl -X POST https://olddragon.com.br/device-authorization \
+  -d "client_id=SEU_CLIENT_ID" \
+  -d "scope=content.read content.write offline_access"
+```
+
+#### HTTPie
+```bash
+http --form POST https://olddragon.com.br/device-authorization \
+  client_id=SEU_CLIENT_ID \
+  scope="content.read content.write offline_access"
+```
+
+Resposta:
+```json
+{
+  "device_code": "...",
+  "user_code": "ABCD1234",
+  "verification_uri": "https://olddragon.com.br/dispositivo",
+  "verification_uri_complete": "https://olddragon.com.br/dispositivo?user_code=ABCD1234",
+  "expires_in": 300,
+  "interval": 5
+}
+```
+
+### 2. Usuário verifica o código
+
+Mostre o `user_code` (ou o link `verification_uri_complete`, que já preenche o
+código) para o usuário. Ele acessa `verification_uri`, faz login se necessário e
+confirma o código — a aplicação não precisa fazer mais nada nesta etapa além de
+aguardar.
+
+### 3. Fazer polling do token
+
+Enquanto o usuário não confirma, faça polling em `/token` a cada `interval`
+segundos (5s por padrão):
+
+#### cURL
+```bash
+curl -X POST https://olddragon.com.br/token \
+  -d "grant_type=urn:ietf:params:oauth:grant-type:device_code" \
+  -d "device_code=SEU_DEVICE_CODE" \
+  -d "client_id=SEU_CLIENT_ID"
+```
+
+#### HTTPie
+```bash
+http --form POST https://olddragon.com.br/token \
+  grant_type=urn:ietf:params:oauth:grant-type:device_code \
+  device_code=SEU_DEVICE_CODE \
+  client_id=SEU_CLIENT_ID
+```
+
+Antes da confirmação, a resposta é `400` com um destes erros em `error`:
+
+| `error` | Significado | O que fazer |
+|---|---|---|
+| `authorization_pending` | Usuário ainda não confirmou | Continue o polling no intervalo indicado |
+| `slow_down` | Polling mais rápido que o intervalo | Aumente o intervalo e continue |
+| `expired_token` | `device_code` expirou (`expires_in`, 5 minutos) | Reinicie o fluxo a partir do passo 1 |
+| `access_denied` | Usuário negou ou revogou o acesso | Reinicie o fluxo a partir do passo 1 |
+
+Após a confirmação, a mesma requisição retorna `200` com `access_token` (e
+`refresh_token`, se `offline_access` foi solicitado) — igual ao fluxo padrão de
+authorization code.
 
 ## Importante: Use Bibliotecas OAuth Estabelecidas
 

@@ -49,18 +49,20 @@ Para dúvidas ou problemas, envie um email para oi@olddragon.com.br.
 ### Cabeçalhos Obrigatórios
 - `User-Agent`: Nome da aplicação e contato (ex: `MeuApp (email@exemplo.com)`)
 - `Content-Type`: `application/json` (para POST/PUT)
-- `Accept`: `application/json` (fortemente recomendado)
+- `Accept`: `application/json` — **obrigatório** em requisições autenticadas: sem esse cabeçalho, uma falha de autenticação (token ausente, expirado ou sem o escopo necessário) redireciona com `302` para `/authorize` em vez de retornar um erro `401` em JSON
 
 ## Autenticação
 
 A API usa OAuth 2.0 com PKCE para autenticação segura. Endpoints públicos (monstros, magias, etc.) podem ser acessados sem autenticação, mas com limitações.
 
+Registre sua aplicação você mesmo em [olddragon.com.br/conta/aplicativos](https://olddragon.com.br/conta/aplicativos) — cadastro self-service, sem aprovação manual, limite de 5 aplicativos por conta.
+
 ### Configuração OAuth
 - **Discovery URL**: `https://olddragon.com.br/.well-known/openid-configuration`
 - **Authorization**: `https://olddragon.com.br/authorize`
 - **Token**: `https://olddragon.com.br/token`
-- **Scopes**: `openid email content.read offline_access`
-- **PKCE**: Obrigatório (método S256)
+- **Scopes**: `openid email content.read content.write offline_access` — leitura (`GET`/`HEAD`) exige `content.read`; qualquer outro método exige `content.write`
+- **PKCE**: Obrigatório (método S256) para o fluxo de authorization code
 
 ### Tokens
 - **Access Token**: Válido por 1 hora
