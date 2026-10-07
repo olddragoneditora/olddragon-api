@@ -10,6 +10,8 @@ Ajudantes são personagens de nível 0 utilizados em aventuras no estilo funil (
 - **Ação Heroica**: Bônus único de +5 em qualquer rolagem
 - **Sem classe**: Ajudantes não possuem classe de personagem
 
+O campo `version` é um inteiro que aumenta a cada gravação da ficha, às vezes sem mudança visível; compare-o com o valor que você já tem para saber se precisa ler a ficha de novo. Nomes vindos de outros registros (campanha, raça, dono) podem mudar sem que ele aumente.
+
 Endpoints:
 
 - [Listar ajudantes](#listar-ajudantes)
@@ -43,6 +45,7 @@ _Parâmetros opcionais de URL_:
     "profession": "Fazendeiro",
     "created_at": "2023-01-01T00:00:00.000",
     "updated_at": "2023-01-01T00:00:00.000",
+    "version": 0,
     "health_points": 5,
     "max_hp": 5,
     "injuries": 0,
@@ -159,6 +162,7 @@ Obter ajudante específico
   "profession": "Fazendeiro",
   "created_at": "2023-01-01T00:00:00.000",
   "updated_at": "2023-01-01T00:00:00.000",
+  "version": 1,
   "health_points": 5,
   "max_hp": 5,
   "injuries": 0,
