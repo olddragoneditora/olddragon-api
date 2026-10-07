@@ -995,6 +995,8 @@ Os itens de inventário representam o equipamento, armas, armaduras e outros obj
 
 **Nota**: Para listar os itens de inventário de um personagem, use o endpoint [Obter personagem específico](#obter-personagem-específico), que retorna todos os dados do personagem incluindo o array `inventory_items` com todos os itens. Cada item no array inclui os campos `id` e `url` que podem ser usados para atualizar ou remover itens específicos.
 
+Uma requisição que a conta não pode fazer neste personagem responde `403 Forbidden`, sem corpo, e um personagem ou item que não existe responde `404 Not Found` com o corpo `{"status": 404, "error": "Not Found"}`.
+
 Criar item de inventário
 ------------------------
 
