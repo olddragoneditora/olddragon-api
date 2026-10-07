@@ -27,6 +27,9 @@ Listar campanhas
 _Parâmetros opcionais de URL_:
 
 * `ids[]` - Lista de IDs de campanhas. Exemplo: `ids[]=261ac8f6-6fbc-4b1e-be4a-6e5ee7d8e4b4&ids[]=261ac8f6-6fbc-4b1e-be4a-6e5ee7d8e4b5`.
+* `papel` - `mestre` lista apenas as campanhas em que o usuário é mestre ou mestre auxiliar. Qualquer outro valor é ignorado.
+
+Cada campanha traz `role`, o papel de quem consulta (`master`, `co_master`, `player`, ou `null` se não participa), `co_masters`, a lista de mestres auxiliares (`handler` e `url`, apenas para quem participa da campanha) e `ajudantes`, os ajudantes da campanha.
 
 ###### Exemplo de resposta JSON
 <!-- START campaigns_index.json -->
@@ -43,6 +46,8 @@ _Parâmetros opcionais de URL_:
       "handler": "jogador",
       "url": "https://olddragon.com.br/perfis/jogador.json"
     },
+    "role": "master",
+    "co_masters": [],
     "personagens": [
       {
         "id": "59a2adaf-96e6-4569-827b-a172982cf13c",
@@ -72,6 +77,52 @@ _Parâmetros opcionais de URL_:
         "race": "humano",
         "class": "guerreiro",
         "url": "https://olddragon.com.br/personagens/59a2adaf-96e6-4569-827b-a172982cf13c.json"
+      }
+    ],
+    "ajudantes": [
+      {
+        "id": "cdbbea92-2fca-5ed4-bfca-7feae5e36e5a",
+        "name": "Carlos Artesão",
+        "level": 0,
+        "health_points": 4,
+        "max_hp": 4,
+        "forca": 11,
+        "destreza": 13,
+        "constituicao": 10,
+        "inteligencia": 12,
+        "sabedoria": 10,
+        "carisma": 10,
+        "ac": 11,
+        "created_at": "2023-01-01T00:00:00.000",
+        "updated_at": "2023-01-01T00:00:00.000",
+        "character_race": {
+          "id": "humano",
+          "name": "Humano",
+          "url": "https://olddragon.com.br/racas/humano.json"
+        },
+        "url": "https://olddragon.com.br/ajudantes/cdbbea92-2fca-5ed4-bfca-7feae5e36e5a.json"
+      },
+      {
+        "id": "92cb8001-5c8a-55fe-9be1-35c28073a7ac",
+        "name": "Pedro Ferreiro",
+        "level": 0,
+        "health_points": 2,
+        "max_hp": 4,
+        "forca": 16,
+        "destreza": 10,
+        "constituicao": 12,
+        "inteligencia": 10,
+        "sabedoria": 9,
+        "carisma": 8,
+        "ac": 10,
+        "created_at": "2023-01-01T00:00:00.000",
+        "updated_at": "2023-01-01T00:00:00.000",
+        "character_race": {
+          "id": "humano",
+          "name": "Humano",
+          "url": "https://olddragon.com.br/racas/humano.json"
+        },
+        "url": "https://olddragon.com.br/ajudantes/92cb8001-5c8a-55fe-9be1-35c28073a7ac.json"
       }
     ],
     "url": "https://olddragon.com.br/campanhas/261ac8f6-6fbc-4b1e-be4a-6e5ee7d8e4b4.json"
@@ -114,6 +165,7 @@ Obter campanha específica
     "handler": "jogador",
     "url": "https://olddragon.com.br/perfis/jogador.json"
   },
+  "role": null,
   "personagens": [
     {
       "id": "59a2adaf-96e6-4569-827b-a172982cf13c",
@@ -143,6 +195,52 @@ Obter campanha específica
       "race": "humano",
       "class": "guerreiro",
       "url": "https://olddragon.com.br/personagens/59a2adaf-96e6-4569-827b-a172982cf13c.json"
+    }
+  ],
+  "ajudantes": [
+    {
+      "id": "cdbbea92-2fca-5ed4-bfca-7feae5e36e5a",
+      "name": "Carlos Artesão",
+      "level": 0,
+      "health_points": 4,
+      "max_hp": 4,
+      "forca": 11,
+      "destreza": 13,
+      "constituicao": 10,
+      "inteligencia": 12,
+      "sabedoria": 10,
+      "carisma": 10,
+      "ac": 11,
+      "created_at": "2023-01-01T00:00:00.000",
+      "updated_at": "2023-01-01T00:00:00.000",
+      "character_race": {
+        "id": "humano",
+        "name": "Humano",
+        "url": "https://olddragon.com.br/racas/humano.json"
+      },
+      "url": "https://olddragon.com.br/ajudantes/cdbbea92-2fca-5ed4-bfca-7feae5e36e5a.json"
+    },
+    {
+      "id": "92cb8001-5c8a-55fe-9be1-35c28073a7ac",
+      "name": "Pedro Ferreiro",
+      "level": 0,
+      "health_points": 2,
+      "max_hp": 4,
+      "forca": 16,
+      "destreza": 10,
+      "constituicao": 12,
+      "inteligencia": 10,
+      "sabedoria": 9,
+      "carisma": 8,
+      "ac": 10,
+      "created_at": "2023-01-01T00:00:00.000",
+      "updated_at": "2023-01-01T00:00:00.000",
+      "character_race": {
+        "id": "humano",
+        "name": "Humano",
+        "url": "https://olddragon.com.br/racas/humano.json"
+      },
+      "url": "https://olddragon.com.br/ajudantes/92cb8001-5c8a-55fe-9be1-35c28073a7ac.json"
     }
   ],
   "url": "https://olddragon.com.br/campanhas/261ac8f6-6fbc-4b1e-be4a-6e5ee7d8e4b4.json"
@@ -179,6 +277,7 @@ Listar personagens em uma campanha
     "level": 5,
     "created_at": "2023-01-01T00:00:00.000",
     "updated_at": "2023-01-01T00:00:00.000",
+    "version": 0,
     "health_points": 30,
     "max_hp": 30,
     "injuries": 0,

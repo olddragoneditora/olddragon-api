@@ -121,7 +121,10 @@ Use cabeçalhos HTTP para otimizar requisições:
 A API suporta CORS para permitir chamadas de navegadores web:
 
 #### Métodos Suportados
-- `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS`
+- `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`, `OPTIONS`
+
+#### Headers Expostos
+- `Link`, `Current-Page`, `Page-Limit`, `Total-Count`, `Total-Pages` e `Location`, legíveis por JavaScript no navegador
 
 #### Headers Permitidos
 - `Authorization`, `Content-Type`, `User-Agent`, e outros

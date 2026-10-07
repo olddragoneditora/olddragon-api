@@ -84,6 +84,22 @@ http --form POST https://olddragon.com.br/token \
   client_id=SEU_CLIENT_ID
 ```
 
+### Revogar o acesso
+
+Para encerrar a conexão, revogue o refresh token:
+
+#### cURL
+```bash
+curl -X POST https://olddragon.com.br/revoke \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"token": "SEU_REFRESH_TOKEN", "token_type_hint": "refresh_token", "client_id": "SEU_CLIENT_ID"}'
+```
+
+Ao contrário de `/token`, `/revoke` exige corpo JSON (um formulário é recusado pela verificação de CSRF) e `token_type_hint` deve ser `refresh_token`: um access token não pode ser revogado. O sucesso devolve `200` com `revoked_at` (o instante da revogação) e `refresh_token` (o token revogado).
+
+Só o refresh token é revogado: o access token continua válido até expirar.
+
 ## Aplicativos de Desktop e Auto-Hospedados (Device Flow)
 
 Aplicativos sem navegador embutido ou sem como guardar um `client_secret` com

@@ -1,6 +1,8 @@
 Personagens
 ===========
 
+O campo `version` é um inteiro que aumenta a cada gravação da ficha, às vezes sem mudança visível; compare-o com o valor que você já tem para saber se precisa ler a ficha de novo. Nomes vindos de outros registros (campanha, classe, raça, magias, dono) podem mudar sem que ele aumente.
+
 Endpoints:
 
 - [Listar personagens](#listar-personagens)
@@ -43,6 +45,7 @@ _Parâmetros opcionais de URL_:
     "level": 5,
     "created_at": "2023-01-01T00:00:00.000",
     "updated_at": "2023-01-01T00:00:00.000",
+    "version": 0,
     "health_points": 30,
     "max_hp": 30,
     "injuries": 0,
@@ -434,6 +437,7 @@ Obter personagem específico
   "level": 5,
   "created_at": "2023-01-01T00:00:00.000",
   "updated_at": "2023-01-01T00:00:00.000",
+  "version": 1,
   "health_points": 30,
   "max_hp": 30,
   "injuries": 0,
