@@ -121,7 +121,8 @@ Obter perfil público
       "name": "Monstro Personalizado Um",
       "url": "https://olddragon.com.br/monstros/880e8400-e29b-41d4-a716-446655440020.json"
     }
-  ]
+  ],
+  "saved_maps": []
 }
 ```
 <!-- END public_profiles_show.json -->

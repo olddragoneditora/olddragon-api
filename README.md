@@ -140,12 +140,13 @@ A API suporta CORS para permitir chamadas de navegadores web:
 - [Perfis](capitulos/perfis.md) - `/perfis/:handler.json`
 - [Raças](capitulos/racas.md) - `/racas.json`
 
-**Nota**: Campanhas, personagens e ajudantes específicos (`/campanhas/ID.json`, `/personagens/ID.json` e `/ajudantes/ID.json`) podem ser acessados sem autenticação.
+**Nota**: Campanhas, personagens e ajudantes específicos (`/campanhas/ID.json`, `/personagens/ID.json` e `/ajudantes/ID.json`) podem ser acessados sem autenticação. O mesmo vale para as rolagens de uma campanha em `/campanhas/ID/chat.json`; as mensagens do chat só chegam a quem participa da campanha.
 
 ### Conteúdo Privado (autenticação obrigatória)
 - [Ajudantes](capitulos/ajudantes.md) - `/ajudantes.json` (listar seus ajudantes)
 - [Campanhas](capitulos/campanhas.md) - `/campanhas.json` (listar suas campanhas)
 - [Personagens](capitulos/personagens.md) - `/personagens.json` (listar seus personagens)
+- [Chat da Campanha](capitulos/chat.md) - `/campanhas/ID/chat.json` (ler a conversa e as rolagens de uma campanha, com `content.read`; participantes também escrevem, com `content.write`)
 - [Acesso](capitulos/acesso.md) - Controle de acesso a conteúdo exclusivo
 
 ### Níveis de Acesso ao Conteúdo
