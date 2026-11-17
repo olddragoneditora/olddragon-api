@@ -60,7 +60,7 @@ O campo `access` em respostas da API indica o nível de acesso:
 Toda resposta inclui `fontes` indicando:
 - `digital_item_url`: URL do livro digital
 - `page`: Página de referência
-- `compact`: Se é versão resumida
+- `compact`: Se o livro apenas usa o conteúdo, sem apresentá-lo (libera só os números)
 
 Use essas informações para:
 1. Mostrar quais livros contêm o conteúdo

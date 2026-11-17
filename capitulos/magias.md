@@ -56,6 +56,35 @@ _Parâmetros opcionais de URL_:
     "url": "https://olddragon.com.br/magias/ajuda.json"
   },
   {
+    "id": "bola-de-fogo",
+    "type": "Spell",
+    "name": "Bola de Fogo",
+    "arcane": 3,
+    "divine": null,
+    "necromancer": null,
+    "illusionist": null,
+    "updated_at": "2023-01-01T00:00:00.000",
+    "circles": {
+      "arcane": [
+        3
+      ]
+    },
+    "reverse": false,
+    "access": "complete",
+    "range": "36 metros",
+    "duration": "instantânea",
+    "jp": "JPD reduz à metade",
+    "description": "Causa 1d6 de dano por nível do conjurador, com máximo de 10d6.\n",
+    "fontes": [
+      {
+        "page": 120,
+        "compact": false,
+        "digital_item_url": "https://olddragon.com.br/livros/lb1.json"
+      }
+    ],
+    "url": "https://olddragon.com.br/magias/bola-de-fogo.json"
+  },
+  {
     "id": "escuridao",
     "type": "Spell",
     "name": "Escuridão",
